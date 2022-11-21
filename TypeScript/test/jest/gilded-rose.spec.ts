@@ -1,5 +1,5 @@
-import { Item, GildedRose } from '@/gilded-rose';
-import { ITEM_TYPES } from '@/constants/item-types';
+import { Item, GildedRose, ITEM_TYPES } from '@/gilded-rose';
+
 
 describe('Gilded Rose', () => {
   const qualitiesToTest = [

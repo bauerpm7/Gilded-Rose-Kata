@@ -1,12 +1,3 @@
-import { ITEM_TYPES } from "./constants/item-types";
-import {
-  updateBrie,
-  updateConjured,
-  updateGeneric,
-  updatePasses,
-  updateSulfuras
-} from './helpers'
-
 export class Item {
   name: string;
   sellIn: number;
@@ -17,6 +8,14 @@ export class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
+}
+
+export enum ITEM_TYPES {
+  BRIE = 'Aged Brie',
+  PASSES ='Backstage passes to a TAFKAL80ETC concert',
+  SULFURAS = 'Sulfuras, Hand of Ragnaros',
+  CONJURED = 'Conjured',
+  GENERIC = 'Generic'
 }
 export class GildedRose {
   items: Array<Item>;
@@ -29,23 +28,72 @@ export class GildedRose {
     this.items.forEach(item => {
       switch (item.name) {
         case ITEM_TYPES.BRIE:
-          updateBrie(item)
+          this.updateBrie(item)
           break;
         case ITEM_TYPES.PASSES:
-          updatePasses(item);
+          this.updatePasses(item);
           break;
         case ITEM_TYPES.SULFURAS:
-          updateSulfuras(item);
+          this.updateSulfuras(item);
           break;
         case ITEM_TYPES.CONJURED:
-          updateConjured(item);
+          this.updateConjured(item);
           break;
         default:
-          updateGeneric(item);
+          this.updateGeneric(item);
           break;
       }
     }) 
 
     return this.items;
   }
+
+  private updateGeneric (item: Item) {
+    item.sellIn -= 1;
+  
+    if (item.quality > 0) item.quality -= 1;
+    if (item.sellIn < 0 && item.quality > 0) item.quality -= 1;
+  
+    return item;
+  };
+  
+  private updateBrie (item: Item) {
+    item.sellIn -= 1;
+  
+    if (item.quality < 50) item.quality += 1;
+    if (item.quality < 50 && item.sellIn < 0) item.quality += 1;
+  
+    return item;
+  };
+
+
+  private updatePasses = (item: Item) => {
+    if (item.quality < 50) item.quality += 1;
+    if (item.sellIn <= 10 && item.quality < 50) item.quality += 1;
+    if (item.sellIn <= 5 && item.quality < 50) item.quality += 1;
+  
+    item.sellIn -= 1;
+  
+    // if past sell by date stop here quality = 0
+    if (item.sellIn < 0) item.quality = 0;
+   
+    return item;
+  }
+
+  private updateSulfuras = (item: Item) => {
+    // sulfuras quality and sellIn don't change
+    return item;
+  };
+
+  private updateConjured = (item: Item) => {
+    item.sellIn -= 1;
+  
+    if (item.quality > 0) item.quality -= 2;
+    if (item.quality > 0 && item.sellIn < 0) item.quality -= 2;
+  
+    // item quality can not go below 0
+    if (item.quality < 0) item.quality = 0;
+  
+    return item;
+  };
 }
