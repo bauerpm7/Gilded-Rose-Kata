@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { Item, GildedRose } from '@/gilded-rose';
-import { ITEM_TYPES } from '@/__lib__/constants/item-types';
+import { ITEM_TYPES } from '@/constants/item-types';
 
 describe('Gilded Rose', () => {
   const qualitiesToTest = [

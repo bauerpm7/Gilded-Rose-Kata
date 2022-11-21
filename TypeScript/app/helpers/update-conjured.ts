@@ -1,4 +1,4 @@
-import { Item } from "../../gilded-rose";
+import { Item } from "../gilded-rose";
 
 export const updateConjured = (item: Item) => {
   item.sellIn -= 1;

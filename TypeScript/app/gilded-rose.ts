@@ -1,11 +1,11 @@
-import { ITEM_TYPES } from "./__lib__/constants/item-types";
+import { ITEM_TYPES } from "./constants/item-types";
 import {
   updateBrie,
   updateConjured,
   updateGeneric,
   updatePasses,
   updateSulfuras
-} from './__lib__/helpers'
+} from './helpers'
 
 export class Item {
   name: string;

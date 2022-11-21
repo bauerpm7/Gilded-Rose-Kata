@@ -1,4 +1,4 @@
-import { Item } from "../../gilded-rose";
+import { Item } from "../gilded-rose";
 
 export const updateSulfuras = (item: Item) => {
   // sulfuras quality and sellIn don't change

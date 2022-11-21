@@ -1,4 +1,4 @@
-import { Item } from "../../gilded-rose";
+import { Item } from "../gilded-rose";
 
 export const updatePasses = (item: Item) => {
   if (item.quality < 50) item.quality += 1;
