@@ -7,8 +7,8 @@ export class Item {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
-  }
-}
+  };
+};
 
 export enum ITEM_TYPES {
   BRIE = 'Aged Brie',
@@ -16,13 +16,13 @@ export enum ITEM_TYPES {
   SULFURAS = 'Sulfuras, Hand of Ragnaros',
   CONJURED = 'Conjured',
   GENERIC = 'Generic'
-}
+};
 export class GildedRose {
   items: Array<Item>;
 
   constructor(items = [] as Array<Item>) {
     this.items = items;
-  }
+  };
 
   updateQuality() {
     this.items.forEach(item => {
@@ -43,10 +43,10 @@ export class GildedRose {
           this.updateGeneric(item);
           break;
       }
-    }) 
+    }) ;
 
     return this.items;
-  }
+  };
 
   private updateGeneric (item: Item) {
     item.sellIn -= 1;
@@ -65,7 +65,6 @@ export class GildedRose {
   
     return item;
   };
-
 
   private updatePasses = (item: Item) => {
     if (item.quality < 50) item.quality += 1;

@@ -1,19 +1,18 @@
 import { Item, GildedRose, ITEM_TYPES } from '@/gilded-rose';
 
-
 describe('Gilded Rose', () => {
   const qualitiesToTest = [
     0, 1, 6, 12, 50
-  ]
+  ];
   
   const sellInValuesToTest = [
     -1, 0, 5, 6, 10, 11
-  ]
+  ];
   describe('update quality for Generic Item', () => {
     qualitiesToTest.forEach(quality => {
       sellInValuesToTest.forEach(sellIn => {
         it(`updates generic item quality correctly with name ${ITEM_TYPES.GENERIC}, quality: ${quality}, sellin: ${sellIn}`, () => {
-          const item = new Item(ITEM_TYPES.GENERIC, sellIn, quality)
+          const item = new Item(ITEM_TYPES.GENERIC, sellIn, quality);
           const gildedRose = new GildedRose([item]);
           const items = gildedRose.updateQuality();
           expect(items[0].sellIn).toEqual(sellIn - 1);
@@ -33,7 +32,7 @@ describe('Gilded Rose', () => {
     qualitiesToTest.forEach(quality => {
       sellInValuesToTest.forEach(sellIn => {
         it(`updates Brie quality correctly with name ${ITEM_TYPES.BRIE}, quality: ${quality}, sellin: ${sellIn}`, () => {
-          const item = new Item(ITEM_TYPES.BRIE, sellIn, quality)
+          const item = new Item(ITEM_TYPES.BRIE, sellIn, quality);
           const gildedRose = new GildedRose([item]);
           const items = gildedRose.updateQuality();
           expect(items[0].sellIn).toEqual(sellIn - 1);
@@ -53,7 +52,7 @@ describe('Gilded Rose', () => {
     qualitiesToTest.forEach(quality => {
       sellInValuesToTest.forEach(sellIn => {
         it(`updates generic item quality correctly with name ${ITEM_TYPES.PASSES}, quality: ${quality}, sellin: ${sellIn}`, () => {
-          const item = new Item(ITEM_TYPES.PASSES, sellIn, quality)
+          const item = new Item(ITEM_TYPES.PASSES, sellIn, quality);
           const gildedRose = new GildedRose([item]);
           const items = gildedRose.updateQuality();
           expect(items[0].sellIn).toEqual(sellIn - 1);
@@ -64,21 +63,21 @@ describe('Gilded Rose', () => {
             } else {
               expect(items[0].quality).toEqual(50);
             }
-          }
+          };
           if (sellIn >= 6  && sellIn < 11 ) {
             if (quality < 49) {
               expect(items[0].quality).toEqual(quality + 2);
             } else {
               expect(items[0].quality).toEqual(50);
-            }
-          }
+            };
+          };
           if (sellIn > 0 && sellIn < 6) {
             if (quality < 48) {
               expect(items[0].quality).toEqual(quality + 3);
             } else {
               expect(items[0].quality).toEqual(50);
-            }
-          }
+            };
+          };
         });
       });
     });
@@ -98,7 +97,7 @@ describe('Gilded Rose', () => {
     qualitiesToTest.forEach(quality => {
       sellInValuesToTest.forEach(sellIn => {
         it(`updates generic item quality correctly with name ${ITEM_TYPES.CONJURED}, quality: ${quality}, sellin: ${sellIn}`, () => {
-          const item = new Item(ITEM_TYPES.CONJURED, sellIn, quality)
+          const item = new Item(ITEM_TYPES.CONJURED, sellIn, quality);
           const gildedRose = new GildedRose([item]);
           const items = gildedRose.updateQuality();
           expect(items[0].sellIn).toEqual(sellIn - 1);
